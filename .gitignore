@@ -1,0 +1,35 @@
+# General ignores
+*.log
+*.lock
+*.o
+*.pyc
+*~
+.#*
+*.swp
+*.DS_Store
+Thumbs.db
+node_modules/
+__pycache__/
+
+# OS-specific files
+.DS_Store # macOS
+desktop.ini # Windows
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Build outputs
+build/
+dist/
+
+# Dependency directories
+venv/
+env/
+
+# Secrets and credentials
+.env
+local.settings.json

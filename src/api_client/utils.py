@@ -2,6 +2,9 @@
 import requests
 import csv
 import re
+import json
+import sys
+
 
 def request_ct(url):
     """Performs a get request that provides a (somewhat) useful error message."""
@@ -26,6 +29,7 @@ def csv_handler(url):
     """Returns request in CSV (list of records) format and headers"""
     response = request_ct(url)
     decoded_content = response.content.decode("utf-8")
+    csv.field_size_limit(sys.maxsize)
     cr = csv.reader(decoded_content.splitlines(), delimiter=",")
     records = list(cr)
     return records, response.headers

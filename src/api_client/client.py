@@ -91,10 +91,10 @@ class ClinicalTrials:
                 if fmt == "json":
                     response, headers = json_handler(f"{self._BASE_URL}{req}")
                     full_studies = response['studies']
-                    pageToken = headers.get('nextPageToken')
+                    pageToken = response.get('nextPageToken', None)
                 else:  # fmt == "csv"
                     full_studies, headers = csv_handler(f"{self._BASE_URL}{req}")
-                    pageToken = headers.get('x-next-page-token')
+                    pageToken = headers.get('x-next-page-token', None)
                 all_studies.extend(full_studies)
                 if not pageToken:
                     break
@@ -125,13 +125,13 @@ class ClinicalTrials:
             req = f"&query.term={search_expr}&markupFormat=legacy&fields={concat_fields}&pageSize={max_studies}"
             if pageToken:
                 req += f"&pageToken={pageToken}"
-            url = f"https://clinicaltrials.gov/api/v2/studies?{format}{req}"
-            data, headers = handler(url)
+            url = f"{self._BASE_URL}studies?{format}{req}"
+            response, headers = handler(url)
             if fmt == "json":
-                full_studies = data['studies']
-                pageToken = headers.get('nextPageToken')
+                full_studies = response['studies']
+                pageToken = response.get('nextPageToken', None)
             else:  # fmt == "csv"
-                full_studies = data
+                full_studies = response
                 pageToken = headers.get('x-next-page-token')
             all_studies.extend(full_studies)
             if not pageToken:
