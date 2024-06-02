@@ -33,3 +33,6 @@ env/
 # Secrets and credentials
 .env
 local.settings.json
+
+# Cached data
+cached_data/api_extracts
