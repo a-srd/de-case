@@ -17,14 +17,15 @@ def create_plot(labels, value_counts):
     """
     fig = go.Figure(data=[go.Pie(labels=labels, values=value_counts, hole=.3)])
     fig.update_layout(title_text="Intervention Type of Competitor Trials")
-    fig.show()
+    return fig  # Return the figure instead of showing it
 
 def main():
     """
     Main function to prepare data and create plot.
     """
     labels, value_counts = prepare_data()
-    create_plot(labels, value_counts)
+    fig = create_plot(labels, value_counts)
+    return fig  # Return the figure created by create_plot
 
 if __name__ == "__main__":
     main()

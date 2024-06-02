@@ -29,14 +29,15 @@ def create_plot(grouped_df):
     """
     fig = px.line(grouped_df, x='Year', y='Count', color='Group', line_group='Group', 
                   labels={'Count':'Number of Studies'}, title='Number of Studies per Year')
-    fig.show()
+    return fig
 
 def main():
     """
     Main function to prepare data and create plot.
     """
     grouped_df = prepare_data()
-    create_plot(grouped_df)
+    fig = create_plot(grouped_df)
+    return fig
 
 if __name__ == "__main__":
     main()

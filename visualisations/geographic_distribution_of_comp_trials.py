@@ -43,20 +43,21 @@ def create_plot(dropdown, traces):
     """
     fig = go.Figure(data=traces)
     fig.update_layout(
+        title="Geographic Distribution of Competitor Trials",  # Add a title here
         updatemenus=[
             go.layout.Updatemenu(
                 buttons=dropdown,
                 direction="down",
-                pad={"r": 10, "t": 10},
+                pad={"r": 5, "t": 5},
                 showactive=True,
-                x=0.09,
+                x=0.01,
                 xanchor="left",
                 y=1.01,  # Adjust this value to move the dropdown up or down
                 yanchor="bottom"  # Anchor the dropdown to the bottom of the y position
             ),
         ]
     )
-    fig.show()
+    return fig
 
 def main():
     """
@@ -65,7 +66,8 @@ def main():
     count_df = prepare_data()
     dropdown = create_dropdown(count_df)
     traces = create_traces(count_df)
-    create_plot(dropdown, traces)
+    fig = create_plot(dropdown, traces)  # Store the figure returned by create_plot
+    return fig  # Return the figure
 
 if __name__ == "__main__":
     main()

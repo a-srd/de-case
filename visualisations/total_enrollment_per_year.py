@@ -73,7 +73,7 @@ def create_plot(grouped_df, sorted_sponsors):
         ],
         barmode='stack'
     )
-    fig.show()
+    return fig
 
 def main():
     """
@@ -81,7 +81,8 @@ def main():
     """
     bar_df, sorted_sponsors = prepare_data()
     grouped_df = expand_data(bar_df)
-    create_plot(grouped_df, sorted_sponsors)
+    fig = create_plot(grouped_df, sorted_sponsors)
+    return fig
 
 if __name__ == "__main__":
     main()

@@ -30,7 +30,7 @@ def create_plot(traces):
         barmode='stack'
     )
     fig = go.Figure(data=traces, layout=layout)
-    fig.show()
+    return fig
 
 def main():
     """
@@ -38,7 +38,8 @@ def main():
     """
     pivot_table = prepare_data()
     traces = create_traces(pivot_table)
-    create_plot(traces)
+    fig = create_plot(traces)
+    return fig
 
 if __name__ == "__main__":
     main()
